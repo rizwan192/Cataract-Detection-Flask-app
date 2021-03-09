@@ -2,3 +2,4 @@ flask
 keras
 matplotlib
 numpy
+gunicorn==19.9.0
