@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import cv2 as cv
+
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 import os
 from tensorflow.keras.models import load_model
