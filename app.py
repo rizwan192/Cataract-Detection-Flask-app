@@ -3,9 +3,9 @@
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 import os
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 import numpy as np
-from keras.preprocessing import image
+from tensorflow.keras.preprocessing import image
 UPLOAD_FOLDER = './flask app/assets/images'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 # Create Database if it doesnt exist
