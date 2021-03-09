@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 
-from flask import Flask, render_template, request, session, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash
 import os
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 import numpy as np
-from tensorflow.keras.preprocessing import image
+from keras.preprocessing import image
 UPLOAD_FOLDER = './flask app/assets/images'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 # Create Database if it doesnt exist
