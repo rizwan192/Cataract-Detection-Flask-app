@@ -1,5 +1,5 @@
 flask
-keras
+tensorflow
 matplotlib
 numpy
 gunicorn==19.9.0
