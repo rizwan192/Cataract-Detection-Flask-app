@@ -62,7 +62,7 @@ def uploaded_chest():
    else:
      model_pred = str('%.2f' % ((1-probability[0])*100) + '% No')
    print(model_pred)
-   return render_template('results_chest.html',model_pred=model_pred)
+   return render_template('index.html',model_pred=model_pred)
 if __name__ == '__main__':
    app.secret_key = ".."
    app.run()
