@@ -3,3 +3,7 @@ tensorflow-cpu
 matplotlib
 numpy
 gunicorn==19.9.0
+scipy
+scikit-image
+dlib
+opencv-contrib-python
