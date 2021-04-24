@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
     <link rel="manifest" href="assets/images/favicons/site.webmanifest">
     <!-- plugin scripts -->
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700%7CBarlow:300,400,500,600,700,800,900%7CPT+Sans:400,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700%7CBarlow:300,400,500,600,700,800,900%7CPT+Sans:400,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="assets/css/animate.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -24,29 +27,36 @@
     <!-- template styles -->
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-</head>
-<body>
-        <section class="page-header">
-            <div class="container">
-                <h2>Detection Results</h2>
-            </div><!-- /.container -->
-        </section><!-- /.page-header -->
 
-        <section class="about-three">
-            <div class="container">
-                <div class="row">
-                    <div class="col d-flex justify-content-center" >
-                    <div class="card" >
-                    <div class="card-body" >
-                        <div class="about-three__title">
-                            <p style="text-align: center;color: white;font-size: 23px;">{{ model_pred }}<p>
-                        </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row mt-5">
+            <div class="col-12">
+                <h1 class="display-4 text-info mt-4"
+                    style="text-align: center;font-family: 'Noto Sans JP', sans-serif;">
+                    DETECTION RESULT
+                </h1>
+            </div>
+            <div class="col-12">
+                <h3 class="display-4 text-dark" style="text-align: center;font-family: 'Noto Sans JP', sans-serif;">
+                    Result: <span style="font-size: 150%;" class="text-secondary">{{ model_pred }}</span>
+                </h3>
+            </div>
+            <div class="col-12 mt-4">
+                <div class="row justify-content-center">
+                    <a href="index.html">
+                        <button type="button" class="btn btn-outline-primary rounded" id="btn-redo">
+                            <i class="fas fa-redo mr-1"></i> Upload Again
+                        </button>
+                    </a>
                 </div>
-            </section>
+            </div>
+        </div>
+    </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/owl.carousel.min.js"></script>
@@ -66,4 +76,5 @@
     <script src="assets/js/testimonials-owl.carousel.config.js"></script>
 
 </body>
+
 </html>

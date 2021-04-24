@@ -1,7 +1,7 @@
 flask
 tensorflow-cpu
 matplotlib
-numpy
+numpy==1.19.3
 gunicorn==19.9.0
 scipy
 scikit-image

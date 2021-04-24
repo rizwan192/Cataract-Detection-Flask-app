@@ -28,6 +28,10 @@ def index():
 def upload():
    return render_template('upload.html')
 
+@app.route('/webcam.html')
+def webcam():
+   return render_template('webcam.html')
+
 @app.route('/upload_chest.html')
 def upload_chest():
    return render_template('upload_chest.html')
@@ -64,7 +68,7 @@ def uploaded_chest():
      model_pred = str('%.2f' % ((1-probability[0])*100) + '% NO')
    print(model_pred)
    print(img_url)
-   return render_template('index.html',model_pred=model_pred,img_url=img_url)
+   return render_template('prediction_result.html',model_pred=model_pred,img_url=img_url)
 if __name__ == '__main__':
    app.secret_key = ".."
    app.run()
