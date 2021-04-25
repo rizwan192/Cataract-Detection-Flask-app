@@ -106,12 +106,10 @@ def uploaded_chest():
    left_image = left_image.reshape(1, 224, 224, 3)  # Ambiguity!
    right_image = right_image.reshape(1, 224, 224, 3)  # Ambiguity!
 
-
    pred_left = model.predict(left_image, batch_size=1)
    pred_right = model.predict(right_image, batch_size=1)
    probability_left = pred_left[0]
    probability_right = pred_right[0]
-   print("Predictions:")
    if probability_left[0] > 0.7:
       model_pred_left = str('%.2f' % (probability_left[0]*100) + '% YES')
    else:
@@ -120,8 +118,6 @@ def uploaded_chest():
        model_pred_right = str('%.2f' % (probability_right[0] * 100) + '% YES')
    else:
        model_pred_right = str('%.2f' % ((1 - probability_right[0]) * 100) + '% NO')
-   print(model_pred_left)
-   print(model_pred_right)
    return render_template('prediction_result.html',model_pred_left=model_pred_left,model_pred_right=model_pred_right)
 if __name__ == '__main__':
    app.secret_key = ".."
