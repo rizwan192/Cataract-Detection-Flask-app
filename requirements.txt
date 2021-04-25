@@ -1,10 +1,9 @@
 flask
 tensorflow-cpu
-matplotlib
 numpy==1.19.3
 gunicorn==19.9.0
 scipy
 scikit-image
 dlib
-opencv-contrib-python
+opencv-python-headless==4.2.0.32
 imutils
