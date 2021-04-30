@@ -91,8 +91,8 @@ def uploaded_chest():
    model= load_model('models/model.hdf5')
    left_url="left_eye.jpg"
    right_url="right_eye.jpg"
-   shutil.copy2('left_eye.jpg', 'flask-app/assets/image')
-   shutil.copy2('right_eye.jpg', 'flask-app/assets/image')
+   shutil.copy2('left_eye.jpg', 'flask-app')
+   shutil.copy2('right_eye.jpg', 'flask-app')
    left_image = tensorflow.keras.preprocessing.image.load_img('left_eye.jpg',target_size=(224, 224))
    right_image = tensorflow.keras.preprocessing.image.load_img('right_eye.jpg',target_size=(224, 224))
    left_image = tensorflow.keras.preprocessing.image.img_to_array(left_image)
