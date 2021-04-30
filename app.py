@@ -36,9 +36,13 @@ def upload():
 def webcam():
    return render_template('webcam.html')
 
-@app.route('/upload_chest.html')
-def upload_chest():
-   return render_template('upload_chest.html')
+@app.route('/about.html')
+def about():
+   return render_template('about.html')
+
+#@app.route('/upload_chest.html')
+#def upload_chest():
+   #return render_template('upload_chest.html')
 
 @app.route('/uploaded_chest', methods = ['POST', 'GET'])
 def uploaded_chest():
@@ -118,7 +122,7 @@ def uploaded_chest():
        model_pred_right = str('%.2f' % (probability_right[0] * 100) + '% YES')
    else:
        model_pred_right = str('%.2f' % ((1 - probability_right[0]) * 100) + '% NO')
-   return render_template('prediction_result.html',model_pred_left=model_pred_left,model_pred_right=model_pred_right)
+   return render_template('preditions_result.html',model_pred_left=model_pred_left,model_pred_right=model_pred_right, left_url=left_url,right_url=right_url)
 if __name__ == '__main__':
    app.secret_key = ".."
    app.run()

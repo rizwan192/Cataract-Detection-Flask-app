@@ -19,8 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
-    <title>Capture Image</title>
+    <title>Cataract Detector</title>
 </head>
 
 <body>
@@ -37,7 +36,7 @@
                             <a class="nav-link pl-1" href="index.html">Home</a>
                         </li>
                         <li class="nav-item bar">
-                            <a class="nav-link pl-1" href="diagnosis.html">Diagnosis</a>
+                            <a class="nav-link pl-1" href="upload.html">Diagnosis</a>
                         </li>
                         <li class="nav-item active bar">
                             <a class="nav-link pl-1" href="about.html">About</a>
@@ -48,69 +47,26 @@
         </div>
     </header>
 
-    <section class="webcam">
+    <section class="about-cataract">
         <div class="container">
             <div class="row">
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-12">
-                            <h3 class="heading text-dark" style="text-align: left;">
-                                Capture Webcam Image
-                            </h3>
-                        </div>
-                        <div class="col-12" id="camera" style="height:auto;width:auto; text-align:center;"></div>
-                        <input type="button" class="btn-outline-info rounded" value="Capture Image and Download"
-                            id="btPic" onclick="takeSnapShot()" style="margin-left: auto;margin-right: auto;" />
-                    </div>
-                </div>
-                <div class="col-md-3 bg-light inst-cataract">
-                    <h3 class="heading text-warning"> 
-                        Please Follow
-                    </h3>
-                    <ul>
-                        <li class="inst">
-                            Upload clear picture of full face
-                        </li>
-                        <li class="inst">
-                            Upload image with high resolution
-                        </li>
-                        <li class="inst">
-                            Upload image with high resolution
-                        </li>
-                        <li class="inst">
-                            Capture and download facial image using webcam
-                        </li>
-                    </ul>
+                <div class="col-lg-8 col-sm-12 mt-3">
+                    <h2 class="text-dark heading" style="text-align:left">
+                        About Cataract Detector
+                    </h2>
+                    <p class="paragraph">
+                        With the aid of Convolutional Neural Network Cataract Detector was developed to classify between 
+                        cataract and non-cataract infected eyes. The web application was developed by using Flask, a popular full-stack
+                        web development framework written in python. The application was first built
+                        on the localmachine. Then, it was hosted on Heroku. The user him-self or his companion can take a snapshot of the user’s eyes using any
+                        camera. The captured photos will need to be uploaded to the application. Basing on the prediction of the model on the
+                        uploaded image the result is displayed in the User Interface as Cataract or Non-cataract.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <script>
-        // CAMERA SETTINGS.
-        Webcam.set({
-            width: 350,
-            height: 300,
-            image_format: 'jpeg',
-            jpeg_quality: 100
-        });
-        Webcam.attach('#camera');
-
-        // TAKE A SNAPSHOT.
-        takeSnapShot = function () {
-            Webcam.snap(function (data_uri) {
-                downloadImage('eye-image', data_uri);
-            });
-        }
-
-        // DOWNLOAD THE IMAGE.
-        downloadImage = function (name, datauri) {
-            var a = document.createElement('a');
-            a.setAttribute('download', name + '.png');
-            a.setAttribute('href', datauri);
-            a.click();
-        }
-    </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

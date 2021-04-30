@@ -19,8 +19,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
-    <title>Capture Image</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <title>Cataract Detector</title>
 </head>
 
 <body>
@@ -36,10 +37,10 @@
                         <li class="nav-item bar">
                             <a class="nav-link pl-1" href="index.html">Home</a>
                         </li>
-                        <li class="nav-item bar">
-                            <a class="nav-link pl-1" href="diagnosis.html">Diagnosis</a>
-                        </li>
                         <li class="nav-item active bar">
+                            <a class="nav-link pl-1" href="upload.html">Diagnosis</a>
+                        </li>
+                        <li class="nav-item bar">
                             <a class="nav-link pl-1" href="about.html">About</a>
                         </li>
                     </ul>
@@ -48,21 +49,54 @@
         </div>
     </header>
 
-    <section class="webcam">
+    <section class="cataract-detector">
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-12">
-                            <h3 class="heading text-dark" style="text-align: left;">
-                                Capture Webcam Image
+                            <h2 class="text-dark heading" style="text-align:left;">
+                                CATARACT DETECTOR
+                            </h2>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <h3 class="heading text-dark" style="text-align: center;">
+                                Upload Photo
                             </h3>
                         </div>
-                        <div class="col-12" id="camera" style="height:auto;width:auto; text-align:center;"></div>
-                        <input type="button" class="btn-outline-info rounded" value="Capture Image and Download"
-                            id="btPic" onclick="takeSnapShot()" style="margin-left: auto;margin-right: auto;" />
+                        <div class="col-12">
+                            <div class="row justify-content-center item">
+                                <img class="eye-preview" src="assets/image/eye.png" alt="Eye Image" id="eye-image">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row justify-content-center">
+                                <form action="/uploaded_chest" method="post" enctype="multipart/form-data">
+                                    <label for="file-upload_1" id="label_1"
+                                        class="custom-file-upload btn btn-outline-info"
+                                        style="margin-top: 8px;">
+                                        Select Image
+                                    </label>
+                                    <input type="file" name="file" id="file-upload_1" onchange="showname();" />
+                                    <button type="submit" class="btn btn-outline-success" id="btn-upload">
+                                        <i class="fa fa-upload" aria-hidden="true"></i> Upload
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row justify-content-center">
+                                <a href="webcam.html">
+                                    <button type="button" class="btn btn-outline-primary">
+                                        <i class="fa fa-camera" aria-hidden="true"></i> Use Webcam
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
+
                 <div class="col-md-3 bg-light inst-cataract">
                     <h3 class="heading text-warning"> 
                         Please Follow
@@ -82,34 +116,27 @@
                         </li>
                     </ul>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <script>
-        // CAMERA SETTINGS.
-        Webcam.set({
-            width: 350,
-            height: 300,
-            image_format: 'jpeg',
-            jpeg_quality: 100
-        });
-        Webcam.attach('#camera');
-
-        // TAKE A SNAPSHOT.
-        takeSnapShot = function () {
-            Webcam.snap(function (data_uri) {
-                downloadImage('eye-image', data_uri);
-            });
-        }
-
-        // DOWNLOAD THE IMAGE.
-        downloadImage = function (name, datauri) {
-            var a = document.createElement('a');
-            a.setAttribute('download', name + '.png');
-            a.setAttribute('href', datauri);
-            a.click();
-        }
+    <script type="text/javascript">
+        function showname() {
+            $("#btn-upload").show('slide', {direction: 'right'}, 1500);
+            loadFile(event)
+            var name_1 = document.getElementById('file-upload_1');
+            console.log(name_1)
+            document.getElementById('label_1').innerHTML = name_1.files.item(0).name;
+            frame.src = img_url;
+        };
+        var loadFile = function (event) {
+            var output = document.getElementById('eye-image');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
     </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
