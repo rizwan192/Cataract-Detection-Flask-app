@@ -5,6 +5,7 @@ import tensorflow
 from imutils import face_utils
 import numpy as np
 import imutils
+import shutil
 import dlib
 import cv2
 from flask import Flask, render_template, request, redirect, flash
@@ -74,33 +75,24 @@ def uploaded_chest():
    rects = detector(gray, 1)
    # loop over the face detections
    for (i, rect) in enumerate(rects):
-       # determine the facial landmarks for the face region, then
-       # convert the landmark (x, y)-coordinates to a NumPy array
-       shape = predictor(gray, rect)
-       shape = face_utils.shape_to_np(shape)
-       # loop over the face parts individually
-       for (name, (i, j)) in FACIAL_LANDMARKS_IDXS.items():
-           # clone the original image so we can draw on it, then
-           # display the name of the face part on the image
-           clone = image.copy()
-           cv2.putText(clone, name, (10, 30), cv2.FONT_HERSHEY_SIMPLEX,
-                       0.7, (0, 0, 255), 2)
-
-           # loop over the subset of facial landmarks, drawing the
-           # specific face part
-           for (x, y) in shape[i:j]:
-               cv2.circle(clone, (x, y), 1, (0, 0, 255), -1)
-               # extract the ROI of the face region as a separate image
-               (x, y, w, h) = cv2.boundingRect(np.array([shape[i:j]]))
-               roi = image[y:y + h, x:x + w]
-               roi = imutils.resize(roi, width=250, inter=cv2.INTER_CUBIC)
-           img_name = name + ".jpg"
-           cv2.imwrite(img_name, roi)
-
+      shape = predictor(gray, rect)
+      shape = face_utils.shape_to_np(shape)
+      # loop over the face parts individually
+      for (name, (i, j)) in FACIAL_LANDMARKS_IDXS.items():
+         clone = image.copy()
+         cv2.putText(clone, name, (10, 30), cv2.FONT_HERSHEY_SIMPLEX,0.7, (0, 0, 255), 2)
+         for (x, y) in shape[i:j]:
+            cv2.circle(clone, (x, y), 1, (0, 0, 255), -1)
+            (x, y, w, h) = cv2.boundingRect(np.array([shape[i:j]]))
+            roi = image[y:y + h, x:x + w]
+            roi = imutils.resize(roi, width=250, inter=cv2.INTER_CUBIC)
+         img_name = name + ".jpg"
+         cv2.imwrite(img_name, roi)
    model= load_model('models/model.hdf5')
    left_url="left_eye.jpg"
    right_url="right_eye.jpg"
-
+   shutil.copy2('left_eye.jpg', 'flask-app/assets/image')
+   shutil.copy2('right_eye.jpg', 'flask-app/assets/image')
    left_image = tensorflow.keras.preprocessing.image.load_img('left_eye.jpg',target_size=(224, 224))
    right_image = tensorflow.keras.preprocessing.image.load_img('right_eye.jpg',target_size=(224, 224))
    left_image = tensorflow.keras.preprocessing.image.img_to_array(left_image)
